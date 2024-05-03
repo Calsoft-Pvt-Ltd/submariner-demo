@@ -73,21 +73,23 @@ subctl deploy-broker --kubeconfig .kube/config
 
 ## Join Cluster B to the Broker
 
-subctl join --kubeconfig .kube/config broker-info.subm --clusterid cluster-a
+subctl join --kubeconfig .kube/config broker-info.subm --clusterid clusterb
 
 Note: broker-info.subm is the file auto generated from above command of deploy broker
 
 ### Login to Cluster A
 
-subctl deploy-broker --kubeconfig .kube/config
-
 ## Join Cluster A to the Broker
 
-Note: copy the broker-info.subm from cluster A to cluster B
+Note: copy the broker-info.subm from cluster B to cluster A
 
-subctl join --kubeconfig .kube/config broker-info.subm --clusterid cluster-b
+subctl join --kubeconfig .kube/config broker-info.subm --clusterid clustera
 
 ## Login to Cluster B
+
+### Diagnose cluster 
+
+subctl diagnose all
 
 ### Check cluster 
 
