@@ -1,0 +1,37 @@
+# Create a simple nginx deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-demo
+spec:
+  replicas: 2  # Number of replicas to test scaling and load balancing
+  selector:
+    matchLabels:
+      app: nginx-demo
+  template:
+    metadata:
+      labels:
+        app: nginx-demo
+    spec:
+      containers:
+      - name: nginx-demo
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+---
+# Create a simple nginx service
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-demo
+  labels:
+    app: nginx-demo
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx-demo
+
